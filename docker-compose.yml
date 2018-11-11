@@ -1,0 +1,16 @@
+version: '3.1'
+
+services:
+  api:
+    container_name: api_gateway
+    build: api-gateway
+    command: "python app.py"
+    ports:
+      - 5000:5000
+    depends_on:
+      - flask_service
+  
+  flask_service:
+    container_name: flask_service
+    build: flask-service
+    command: "python app.py"

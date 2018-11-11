@@ -1,0 +1,9 @@
+autopep8==1.4.2
+enum34==1.1.6
+futures==3.2.0
+googleapis-common-protos==1.5.5
+grpcio==1.16.0
+grpcio-tools==1.16.0
+protobuf==3.6.1
+pycodestyle==2.4.0
+six==1.11.0
