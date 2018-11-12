@@ -17,6 +17,13 @@ def hello_world():
         response = stub.SayHello(helloworld_pb2.HelloRequest(name='you'))
     return response.message
 
+@app.route('/go')
+def hello_world_go():
+    with grpc.insecure_channel('go_service:50051') as channel:
+        stub = helloworld_pb2_grpc.GreeterStub(channel)
+        response = stub.SayHello(helloworld_pb2.HelloRequest(name='you'))
+    return response.message
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

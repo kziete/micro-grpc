@@ -9,8 +9,13 @@ services:
       - 5000:5000
     depends_on:
       - flask_service
+      - go_service
   
   flask_service:
     container_name: flask_service
     build: flask-service
     command: "python app.py"
+  
+  go_service:
+    container_name: go_service
+    build: go-service
