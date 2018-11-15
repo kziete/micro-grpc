@@ -2,7 +2,6 @@ version: '3.1'
 
 services:
   api:
-    container_name: api_gateway
     build: api-gateway
     command: "python app.py"
     ports:
@@ -10,12 +9,18 @@ services:
     depends_on:
       - flask_service
       - go_service
-  
+
   flask_service:
-    container_name: flask_service
     build: flask-service
     command: "python app.py"
-  
+
+  go_lb:
+    image: dockercloud/haproxy
+    links:
+      - go_service
+      - flask_service
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      
   go_service:
-    container_name: go_service
     build: go-service

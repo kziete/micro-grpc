@@ -17,16 +17,18 @@ from concurrent import futures
 import time
 
 import grpc
-
+import logging
 import helloworld_pb2
 import helloworld_pb2_grpc
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
+logger = logging.getLogger("python_flask")
 
 class Greeter(helloworld_pb2_grpc.GreeterServicer):
 
     def SayHello(self, request, context):
+        logger.info("por aca!!!")
         return helloworld_pb2.HelloReply(message='Hello, %s from python!' % request.name)
 
 
